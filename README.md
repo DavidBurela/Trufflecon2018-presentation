@@ -137,14 +137,17 @@ Note: don't put raw mnemonic in truffle.js, use pipeline variables to keep them 
 // truffle.js
 var HDWalletProvider = require("truffle-hdwallet-provider");
 var mnemonic = "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat";
-// var mnemonic = process.env.deploymentMnemonic
+var networkEndpoint = "http://eth5kzzgs-dns-reg1.westus.cloudapp.azure.com:8540";
+// var mnemonic = process.env.deploymentMnemonic;
+// var networkEndpoint = process.env.deploymentNetworkEndpoint;
+
 
 module.exports = {
 //...
 	networks: {
 		azure: {
-		provider: function () {
-			return new HDWalletProvider(mnemonic, "http://eth5kzzgs-dns-reg1.westus.cloudapp.azure.com:8540", 0)
+			provider: function () {
+			    return new HDWalletProvider(mnemonic, networkEndpoint, 0)
 		},
 		gasPrice : 0,
 		network_id: "*"
