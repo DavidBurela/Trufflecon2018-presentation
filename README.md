@@ -1,7 +1,9 @@
+# PRESENTATION LINK https://aka.ms/Trufflecon2018
+
 # Intro
 - Live in Australia (30 hour travel time to Trufflecon)
 - Blockchain Domain lead @ Microsoft.
-- CSE (Commercial Software Engineering), work with Microsoft's top 400 companies globally to help their dev teams be awesome on Azure.
+- CSE (Commercial Software Engineering), work with Microsoft's top 400 enterprises globally to help their dev teams be awesome on Azure.
 - Been using Truffle since 2016, I created a lot of the early Truffle on Windows tutorials https://truffleframework.com/tutorials
 
 
@@ -11,6 +13,7 @@
 Because some npm packages don't run nicely on windows (due to node-gyp), I recommend devs use Ubuntu on Windows.
 
 - [Installing Truffle on Ubuntu](https://davidburela.wordpress.com/2017/05/12/how-to-install-truffle-testrpc-on-ubuntu-or-windows-10-with-windows-subsystem-for-linux/)
+- Use Hyper as a better terminal https://hyper.is/
 - [WSL Install guide](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 - [WSL overview blog post](https://blogs.msdn.microsoft.com/wsl/2016/04/22/windows-subsystem-for-linux-overview/)
 
@@ -42,6 +45,8 @@ npm install -g chokidar-cli
 chokidar 'contracts/*.sol' 'test/*.js' -c 'truffle test' --initial
 ```
 
+> **PAIN PAINT:** I want a common artifact format across Truffle & Nethereum. Load a `metacoin.json` file into Nethereum and have it auto detect the ABI & deployed address.
+
 ## Async tests
 > **PAIN POINT:** the sample tests are sync. Async tests are smaller and cleaner.
 
@@ -50,6 +55,13 @@ Change unit tests to async
 - [Direct link to test sample](https://github.com/DavidBurela/TruffleAsyncTests/blob/master/test/asyncmetacoin.js)
 
 # Blockchain DevOps
+
+> Prerequisite: Install truffle as a dev dependency
+``` bash
+npm init -y
+npm install truffle --save-dev
+```
+
 ## Azure DevOps Pipeline
 
 > Cloud-hosted pipelines for Linux, macOS, and Windows with unlimited minutes and **10 free parallel jobs for open source.** https://azure.microsoft.com/en-us/services/devops/pipelines/
@@ -99,6 +111,13 @@ mocha: {
     testResultsFiles: '**/TEST-*.xml' 
 ```
 
+## break a test and do a pull request
+- modify metacoin.sol to break test
+- check broken code on a branch and push
+- create a pull request
+
+## add the build status badge
+https://docs.microsoft.com/en-us/azure/devops/pipelines/get-started-yaml?view=vsts#get-the-status-badge
 
 # Ethereum on Azure
 - [Ethereum PoA marketplace listing](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/microsoft-azure-blockchain.azure-blockchain-ethereum?tab=Overview)
@@ -110,10 +129,15 @@ npm install truffle-hdwallet-provider --save
 ```
 > **PAIN POINT:** requires node-gyp. Can we have this web packed like Truffle? 
 
+Note: don't put raw mnemonic in truffle.js, use pipeline variables to keep them secret 
+- https://docs.microsoft.com/en-us/azure/devops/pipelines/library/variable-groups
+- https://stackoverflow.com/questions/49578709/is-there-a-way-to-provide-environment-variables-to-a-vsts-ci-npm-task
+
 ``` javascript
 // truffle.js
 var HDWalletProvider = require("truffle-hdwallet-provider");
 var mnemonic = "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat";
+// var mnemonic = process.env.deploymentMnemonic
 
 module.exports = {
 //...
@@ -130,6 +154,13 @@ module.exports = {
 }
 ```
 
+``` yaml
+- script: |
+    npx truffle migrate --network azure
+  displayName: 'contract deployment'
+```
+
 > **PAIN POINT:** Once migrations are run, where to store the artifacts? EthPM?
 
-> **PAIN PAINT:** I want a common artifact format across Truffle & Nethereum. Load a `metacoin.json` file into Nethereum and have it auto detect the ABI & deployed address.
+
+# PRESENTATION LINK https://aka.ms/Trufflecon2018
