@@ -1,4 +1,5 @@
-# PRESENTATION LINK https://aka.ms/Trufflecon2018
+# Presentation link https://aka.ms/Trufflecon2018
+# Demo code https://github.com/DavidBurela/Trufflecon2018-Demo
 
 # Intro
 - Live in Australia (30 hour travel time to Trufflecon)
@@ -166,6 +167,3 @@ module.exports = {
 ```
 
 > **PAIN POINT:** Once migrations are run, where to store the artifacts? EthPM?
-
-
-# PRESENTATION LINK https://aka.ms/Trufflecon2018
