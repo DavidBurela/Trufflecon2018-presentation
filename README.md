@@ -36,6 +36,8 @@ Start with metacoin box as it has things nicely configured
 truffle unbox metacoin
 ```
 
+> **PAIN POINT:** Truffle boxes missing licensing.
+
 ## Continuous test runner
 > **PAIN POINT:** `truffle watch` does not work
 
