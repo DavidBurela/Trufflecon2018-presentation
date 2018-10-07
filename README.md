@@ -48,7 +48,7 @@ npm install -g chokidar-cli
 chokidar 'contracts/*.sol' 'test/*.js' -c 'truffle test' --initial
 ```
 
-> **PAIN PAINT:** I want a common artifact format across Truffle & Nethereum. Load a `metacoin.json` file into Nethereum and have it auto detect the ABI & deployed address.
+> **PAIN POINT:** I want a common artifact format across Truffle & Nethereum. Load a `metacoin.json` file into Nethereum and have it auto detect the ABI & deployed address.
 
 ## Async tests
 > **PAIN POINT:** the sample tests are sync. Async tests are smaller and cleaner.
