@@ -82,7 +82,7 @@ https://github.com/marketplace/azure-pipelines
 
 - script: |
     npx truffle compile
-    npx truffle test
+    npx truffle test --network test
   displayName: 'truffle compile & test'
 ```
 
