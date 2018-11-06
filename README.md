@@ -95,8 +95,9 @@ npm install truffle mocha mocha-junit-reporter --save-dev
 
 ``` javascript
 // truffle.js - specify mocha output options
+// set the reporter to "spec" to output to terminal, or "mocha-junit-reporter" to output XML
 mocha: {
-    reporter: "mocha-junit-reporter",
+    reporter: "spec",
     reporterOptions: {
       mochaFile: 'TEST-truffle.xml'
     }
@@ -106,7 +107,14 @@ mocha: {
 > **PAIN POINT:** Need to change test runner manually. Can I pass a param into `truffle test` to change the test runner.
 
 ``` yaml
-# azure-pipelines.js - Publish Test Results in 
+# azure-pipelines.js
+
+# Insert this before running Truffle Test. This will set the reporter to output junit XML
+- script: |
+    sed -i -e 's/reporter: "spec"/reporter: "mocha-junit-reporter"/g' truffle.js
+  displayName: 'configure mocha to output junit'
+
+# Put this after running Truffle Test. Publishes Test Results in Azure DevOps
 - task: PublishTestResults@2
   condition: always()
   inputs:
