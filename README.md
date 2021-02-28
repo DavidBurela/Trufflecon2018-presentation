@@ -1,8 +1,9 @@
 # Presentation link https://aka.ms/Trufflecon2018
 # Demo code https://github.com/DavidBurela/Trufflecon2018-Demo
+# Video recording https://www.youtube.com/watch?v=Auf8W5q1I9c
 
 # Intro
-- Live in Australia (30 hour travel time to Trufflecon)
+- I live in Australia (30 hour travel time to Trufflecon)
 - Blockchain Domain lead @ Microsoft.
 - CSE (Commercial Software Engineering), work with Microsoft's top 400 enterprises globally to help their dev teams be awesome on Azure.
 - Been using Truffle since 2016, I created a lot of the early Truffle on Windows tutorials https://truffleframework.com/tutorials
